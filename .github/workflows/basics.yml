@@ -5,6 +5,11 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      testVariable:
+        type: string
+        description: 'Just for testing'
         
 jobs:
 
@@ -26,3 +31,5 @@ jobs:
           echo "Starting job 2"
           echo "Building the docker image ..."
           echo "End job 2"
+          echo "The value is:"
+          echo ${{ inputs.testVariable }}

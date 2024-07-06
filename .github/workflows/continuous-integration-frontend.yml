@@ -1,0 +1,35 @@
+name: Vue.js CI/CD
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./vuejs-project
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run code analysis and formatting
+      run: |
+        npm run lint
+        npm run check:format
+
+    - name: Run unit tests
+      run: npm run test:unit
+
+    - name: Build project
+      run: npm run build

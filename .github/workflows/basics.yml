@@ -1,0 +1,28 @@
+name: Basics
+run-name: Basics pipeline with my friends from AWS User Group Lome
+
+on:
+  push:
+    branches:
+      - main
+        
+jobs:
+
+  job1:
+    runs-on: ubuntu-latest
+    name: My first job
+
+    steps:
+      - name: Run my deployment bash script
+        run: echo "We're simulating running the deployment in the first job"
+
+  job2:
+    runs-on: ubuntu-latest
+    name: My second job
+
+    steps:
+      - name: Build docker image
+        run: |
+          echo "Starting job 2"
+          echo "Building the docker image ..."
+          echo "End job 2"
